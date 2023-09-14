@@ -21,14 +21,3 @@ def gen_dataset(file):
 if __name__ == "__main__":
     file = "柯文哲_dataset_chatglm.jsonl"
     dataset = gen_dataset(file)
-
-    # fine_tune_dataset: {
-    #     "object": "file",
-    #     "id": "file-Qo2wzwjqaCunIJI1v5uEpvmO",
-    #     "purpose": "fine-tune",
-    #     "filename": "file",
-    #     "bytes": 580255,
-    #     "created_at": 1694673961,
-    #     "status": "uploaded",
-    #     "status_details": null
-    # }
