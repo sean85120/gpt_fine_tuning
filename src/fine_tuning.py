@@ -19,9 +19,9 @@ def fine_tuning(training_file_id):
 
 
 def fine_tuning_status(model):
-    fine_tuned_model = openai.FineTuningJob.retrieve(model)
+    fine_tuning_job = openai.FineTuningJob.retrieve(model)
 
-    return fine_tuned_model
+    return fine_tuning_job
 
 
 def list_fine_tuning():
@@ -30,7 +30,12 @@ def list_fine_tuning():
     return fine_tuned_list
 
 
+# if __name__ == "__main__":
+#     training_file_id = "file-cKSb4uTMcO0NHvqkjT2e30tC"
+#     model = fine_tuning(training_file_id=training_file_id)
+#     print("fine_tune_model:", model)
+
 if __name__ == "__main__":
-    training_file_id = "file-cKSb4uTMcO0NHvqkjT2e30tC"
-    model = fine_tuning(training_file_id=training_file_id)
-    print("fine_tune_model:", model)
+    model = "ftjob-Q2NWWTrQKe95DkLVdeEwvl2q"
+    fine_tuning_job = fine_tuning_status(model=model)
+    print("fine_tuning_job_status:", fine_tuning_job)
