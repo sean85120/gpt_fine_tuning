@@ -9,9 +9,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def gen_dataset(file):
-    training_file = openai.File.create(
-        file=open("柯文哲_dataset_chatglm.jsonl", "rb"), purpose="fine-tune"
-    )
+    training_file = openai.File.create(file=open(file, "rb"), purpose="fine-tune")
 
     print("training_file:", training_file)
 
@@ -19,5 +17,5 @@ def gen_dataset(file):
 
 
 if __name__ == "__main__":
-    file = "柯文哲_dataset_chatglm.jsonl"
+    file = "./src/柯文哲_dataset_gpt_0925.jsonl"
     dataset = gen_dataset(file)

@@ -55,8 +55,7 @@ def gen_question(data_path: str):
                     "messages": [
                         {
                             "role": "system",
-                            "content": "You are not a AI assitance, you are a human. \
-                                (以柯文哲的身份，用繁體中文一次回答一個問題，在提到柯文哲時，用“我”替換)",
+                            "content": "You are not a AI assitance, you are a human.(以柯文哲的身份，用繁體中文一次回答一個問題，在提到柯文哲時，用“我”替換)",
                         },
                         {
                             "role": "user",
@@ -71,20 +70,37 @@ def gen_question(data_path: str):
                 f.write("\n")
 
 
-def gen_qa_set():
-    with open("kp_podcast.txt", "r") as f:
-        i = 0
-        for line in f:
-            i += 1
-            if i % 2 == 1:
-                line = "Q:" + line
-                print("line:", line)
+def conversation_to_jsonl(data_path: str):
+    with open(data_path, "r", encoding="utf-8") as f:
+        dataset = [line for line in f]
 
-            if i % 2 == 0:
-                line = "A:" + line
-                print("line:", line)
+        for data in dataset:
+            question = str(data).split(":")[1].split(":")[0]
+            answer = str(data).split(":")[2]
 
+            json_payload = {
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are not a AI assitance, you are a human.(以柯文哲的身份，用繁體中文一次回答一個問題，在提到柯文哲時，用“我”替換)",
+                    },
+                    {
+                        "role": "user",
+                        "content": f"你是柯文哲，請回答問題，{question}",
+                    },
+                    {"role": "assistant", "content": answer},
+                ]
+            }
+
+            with open("test_conversation.jsonl", "a") as f:
+                payload = json.dumps(json_payload, ensure_ascii=False)
+                f.write(payload)
+                f.write("\n")
+
+
+# if __name__ == "__main__":
+#     data_path = "test1.jsonl"
+#     gen_question(data_path)
 
 if __name__ == "__main__":
-    data_path = "test1.jsonl"
-    gen_question(data_path)
+    conversation_to_jsonl("kp_podcast.txt")
