@@ -14,25 +14,6 @@ def gen_question(data_path: str):
 
         print(dataset[0])
 
-        # with open("resp.txt", "a") as f:
-        #     for data in dataset:
-        #         answer = data["content"]
-        #         print("answer: ", answer)
-        #         messages = [
-        #             {
-        #                 "role": "user",
-        #                 "content": f"你是一名專業的記者，柯文哲說{answer}，\
-        #                   若前一句話是問句，請推測前一句話可能是什麼",
-        #             },
-        #         ]
-        #         resp = openai.ChatCompletion.create(
-        #             model="gpt-3.5-turbo-0613", messages=messages
-        #         )
-        #         response = resp.choices[0].message
-        #         print("resp:", str(response))
-
-        #         f.write(str(response.content) + "\n")
-
         with open("test_gen_question.jsonl", "a") as f:
             for data in dataset:
                 answer = data["content"]
