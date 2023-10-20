@@ -31,13 +31,13 @@ def list_fine_tuning():
     return fine_tuned_list
 
 
-# if __name__ == "__main__":
-#     training_file_id = "file-OUZOX7cBlXTAfrzfueXk9uhQ"
-#     model = fine_tuning(training_file_id=training_file_id)
-#     print("fine_tune_model:", model)
-
-
 if __name__ == "__main__":
-    ft_job = "ftjob-JzUJG3EBXzrdwEqQ66sHtS6l"
-    status = fine_tuning_status(model=ft_job)
-    print("fine_tune_status:", status)
+    training_file_id = "file-BewObsflRjhlUttNa85HuzLz"
+    model = fine_tuning(training_file_id=training_file_id)
+    print("fine_tune_model:", model)
+
+
+# if __name__ == "__main__":
+#     ft_job = "ftjob-JzUJG3EBXzrdwEqQ66sHtS6l"
+#     status = fine_tuning_status(model=ft_job)
+#     print("fine_tune_status:", status)

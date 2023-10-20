@@ -17,5 +17,5 @@ def gen_dataset(file):
 
 
 if __name__ == "__main__":
-    file = "./src/柯文哲_dataset_gpt_0925.jsonl"
+    file = "./侯友宜_dataset_gpt_1019.jsonl"
     dataset = gen_dataset(file)
