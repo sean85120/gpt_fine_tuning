@@ -51,23 +51,26 @@ def gen_question(data_path: str):
                 f.write("\n")
 
 
-def conversation_to_jsonl(data_path: str):
+def conversation_to_jsonl(data_path: str, charcater_name: str):
     with open(data_path, "r", encoding="utf-8") as f:
         dataset = [line for line in f]
 
+        # print("dataset: ", dataset)
+
         for data in dataset:
-            question = str(data).split(":")[1].split(":")[0]
+            question = str(data).split(":")[1].split("A")[0]
             answer = str(data).split(":")[2]
+            print([question, answer])
 
             json_payload = {
                 "messages": [
                     {
                         "role": "system",
-                        "content": "You are not a AI assitance, you are a human.(以柯文哲的身份，用繁體中文一次回答一個問題，在提到柯文哲時，用“我”替換)",
+                        "content": f"You are not a AI assitance, you are a human.(以{character_name}的身份，用繁體中文一次回答一個問題，在提到{character_name}時，用“我”替換)",
                     },
                     {
                         "role": "user",
-                        "content": f"你是柯文哲，請回答問題，{question}",
+                        "content": f"你是{character_name}，請回答問題，{question}",
                     },
                     {"role": "assistant", "content": answer},
                 ]
@@ -79,9 +82,6 @@ def conversation_to_jsonl(data_path: str):
                 f.write("\n")
 
 
-# if __name__ == "__main__":
-#     data_path = "test1.jsonl"
-#     gen_question(data_path)
-
 if __name__ == "__main__":
-    conversation_to_jsonl("kp_podcast.txt")
+    character_name = "侯友宜"
+    conversation_to_jsonl("hyi_podcast.txt", character_name)

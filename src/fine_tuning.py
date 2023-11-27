@@ -32,7 +32,7 @@ def list_fine_tuning():
 
 
 if __name__ == "__main__":
-    training_file_id = "file-BewObsflRjhlUttNa85HuzLz"
+    training_file_id = "file-YcvrvK9MSl3pJTrlxqUbFJTJ"
     model = fine_tuning(training_file_id=training_file_id)
     print("fine_tune_model:", model)
 
